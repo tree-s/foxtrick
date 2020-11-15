@@ -127,7 +127,7 @@
 		{
 			"duty": "supporter",
 			"id": "10680966",
-			"name": "vegar56"
+			"name": "<vegar56>"
 		},
 		{
 			"duty": "supporter",
@@ -507,7 +507,7 @@
 		{
 			"duty": "supporter",
 			"id": "12788724",
-			"name": "jkers"
+			"name": "<jkers>"
 		},
 		{
 			"duty": "supporter",
@@ -543,6 +543,11 @@
 			"duty": "translator",
 			"id": "12975827",
 			"name": "<MartinsPF_>"
+		},
+		{
+			"duty": "supporter",
+			"id": "12979172",
+			"name": "Robin-Bird"
 		},
 		{
 			"duty": "supporter",
@@ -633,6 +638,11 @@
 			"duty": "supporter",
 			"id": "13359636",
 			"name": "Latic_"
+		},
+		{
+			"duty": "supporter",
+			"id": "13552149",
+			"name": "Daniel_Gringo"
 		},
 		{
 			"duty": "supporter",
@@ -1017,7 +1027,7 @@
 		{
 			"duty": "supporter",
 			"id": "3967774",
-			"name": "<tmace85>"
+			"name": "tmace85"
 		},
 		{
 			"duty": "supporter",
@@ -1302,7 +1312,7 @@
 		{
 			"duty": "translator",
 			"id": "6489521",
-			"name": "-JENDA-"
+			"name": "<-JENDA->"
 		},
 		{
 			"duty": "developer",
@@ -1672,7 +1682,7 @@
 		{
 			"duty": "translator",
 			"id": "9469076",
-			"name": "GM-Comandante"
+			"name": "Comandante"
 		},
 		{
 			"duty": "supporter",
