@@ -25,6 +25,7 @@ htLanguage
 last-page
 lastTime
 logDisabled
+errorReporting
 mail_templates
 module.ARIALandmarks.enabled
 module.AddDefaultFaceCard.enabled
@@ -296,6 +297,7 @@ module.LinksPlayerDetail.htlinks_Goalkeeper_Checker.enabled
 module.LinksPlayerDetail.nrg_deffor.enabled
 module.LinksPlayerDetail.nrg_pop.enabled
 module.LinksPlayerDetail.staminia.enabled
+module.LinksPlayerDetail.mercattrick.enabled
 module.LinksPlayers.enabled
 module.LinksTeam.argenstat.enabled
 module.LinksTeam.enabled
@@ -424,6 +426,8 @@ module.MatchSimulator.enabled
 module.MatchSimulator.value
 module.MatchWeather.Irl.enabled
 module.MatchWeather.enabled
+module.MercattrickStats.enabled
+module.MercattrickStats.enableTLPage.enabled
 module.MobileEnhancements.ViewPort.enabled
 module.MobileEnhancements.ViewPort_text
 module.MobileEnhancements.enabled
@@ -734,6 +738,8 @@ module.SkillTable.transfer.wbtmPosition
 module.SkillTable.transfer.wdPosition
 module.SkillTable.transfer.woPosition
 module.SkillTable.transfer.wtmPosition
+module.SkillTable.transfer.MercattrickStats.filters
+module.SkillTable.transfer.MercattrickStats.bookmarks
 module.SkillTable.youth.others.Age
 module.SkillTable.youth.others.CanBePromotedIn
 module.SkillTable.youth.others.CareerGoals
