@@ -19,7 +19,7 @@ Foxtrick.modules['AttVsDef'] = {
 			return;
 
 		var ratingstable = Foxtrick.Pages.Match.getRatingsTable(doc);
-		if (Foxtrick.Pages.Match.isWalkOver(ratingstable))
+		if (!ratingstable || Foxtrick.Pages.Match.isWalkOver(ratingstable))
 			return;
 
 		var module = this;
@@ -87,6 +87,9 @@ Foxtrick.modules['AttVsDef'] = {
 		var realProb = Foxtrick.Prefs.getBool('AttVsDef.realProbabilitiesOn');
 		var bars = doc.querySelectorAll('.possesionbar img[width]');
 		var pctgs = doc.querySelectorAll('.rightAnalysisColoumn strong');
+		if (!pctgs.length)
+			return;
+
 		for (var i = 0; i < 2; i++) {
 			var homePctg = pctgs[i * 2];
 			var awayPctg = pctgs[i * 2 + 1];

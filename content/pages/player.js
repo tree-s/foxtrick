@@ -195,6 +195,7 @@ Foxtrick.Pages.Player.getSkillLevel = function(el) {
  * @param  {document} doc
  * @return {PlayerAttributes}
  */
+// eslint-disable-next-line complexity
 Foxtrick.Pages.Player.getAttributes = function(doc) {
 	/** @type {PlayerAttributes} */
 	var attrs = {};
@@ -258,6 +259,8 @@ Foxtrick.Pages.Player.getAttributes = function(doc) {
 		else {
 			/** @type {HTMLAnchorElement[]} */
 			let links = Foxtrick.toArray(doc.querySelectorAll('.playerInfo .skill'));
+			if (!links.length)
+				return attrs;
 
 			// form vs stamina
 			if (RE_SKILL_SHORT.test(links[0].href)) {
@@ -673,7 +676,7 @@ Foxtrick.Pages.Player.parseSeniorSkills = function(table) {
 		var rows = table.rows;
 		for (var i = 0; i < order.length; ++i) {
 			var skillLink = rows[i].getElementsByTagName('a')[0];
-			if (!regE.test(skillLink.href)) {
+			if (!skillLink || !regE.test(skillLink.href)) {
 				found = false;
 				return; // skills are not visible
 			}
@@ -690,15 +693,15 @@ Foxtrick.Pages.Player.parseSeniorSkills = function(table) {
 	/** @param {HTMLTableElement} table */
 	var parseSeniorTable = function(table) {
 		var order = skillMap.senior;
-		var cells = table.getElementsByTagName('td');
+		var cells = table.querySelectorAll('td');
 		for (var i = 0; i < order.length; ++i) {
 			var cell = cells[2 * i + 1];
 			if (!cell) {
 				found = false;
 				return; // skills are not visible
 			}
-			var skillLink = cell.getElementsByTagName('a')[0];
-			if (!regE.test(skillLink.href)) {
+			var skillLink = cell.querySelector('a');
+			if (!skillLink || !regE.test(skillLink.href)) {
 				found = false;
 				return; // skills are not visible
 			}

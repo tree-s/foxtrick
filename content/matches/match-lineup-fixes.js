@@ -16,6 +16,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 
 	// CSS: Foxtrick.InternalPath + 'resources/css/match-lineup-fixes.css',
 	/** @param {document} doc */
+	// eslint-disable-next-line complexity
 	run: function(doc) {
 		if (!Foxtrick.Pages.Match.hasRatingsTabs(doc))
 			return;
@@ -286,7 +287,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 						// player.ftLastStamina = ratings.players[idx].Stamina;
 
 						// add stars for all further events
-						while (timeline[j]) {
+						while (timeline[j] && playerRatingsByEvent[j]) {
 							playerRatingsByEvent[j].players[idx].Stars = starsLast;
 							++j;
 						}
@@ -689,7 +690,8 @@ Foxtrick.modules['MatchLineupFixes'] = {
 		if (Foxtrick.Pages.Match.isPrematch(doc) || Foxtrick.Pages.Match.inProgress(doc))
 			return;
 
-		if (Foxtrick.Pages.Match.isWalkOver(doc.querySelector('div.mainBox table')))
+		let table = Foxtrick.Pages.Match.getRatingsTable(doc);
+		if (!table || Foxtrick.Pages.Match.isWalkOver(table))
 			return;
 
 		if (weatherEvents.length &&
@@ -697,7 +699,7 @@ Foxtrick.modules['MatchLineupFixes'] = {
 			fixWeatherSEs();
 
 		// FF is executing twice, wtf?
-		if (!('ftIdx' in playerRatingsHome[0].players[0]) &&
+		if (playerRatingsHome.length && !('ftIdx' in playerRatingsHome[0].players[0]) &&
 			Foxtrick.Prefs.isModuleOptionEnabled('MatchLineupFixes', 'AddStarsToSubs')) {
 			addStarsToSubs(playerRatingsHome);
 			addStarsToSubs(playerRatingsAway);

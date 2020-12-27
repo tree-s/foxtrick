@@ -289,6 +289,10 @@ Foxtrick.modules.MatchLineupTweaks = {
 	// adds teamsnames to the field for less confusion
 	/** @param {document} doc */
 	runTeamnNames: function(doc) {
+		var field = doc.getElementById('playersField');
+		if (!field)
+			return;
+
 		var homeTeamName = Foxtrick.Pages.Match.getHomeTeamName(doc);
 		var awayTeamName = Foxtrick.Pages.Match.getAwayTeamName(doc);
 
@@ -304,8 +308,8 @@ Foxtrick.modules.MatchLineupTweaks = {
 		Foxtrick.addClass(homeSpan, 'ft-match-lineup-tweaks-teamname-home');
 		Foxtrick.addClass(awaySpan, 'ft-match-lineup-tweaks-teamname-away');
 
-		doc.getElementById('playersField').appendChild(homeSpan);
-		doc.getElementById('playersField').appendChild(awaySpan);
+		field.appendChild(homeSpan);
+		field.appendChild(awaySpan);
 	},
 
 	/**
@@ -883,7 +887,8 @@ Foxtrick.modules.MatchLineupTweaks = {
 		});
 
 		let field = doc.getElementById('playersField');
-		field.appendChild(div);
+		if (field)
+			field.appendChild(div);
 	},
 
 	/** @param {document} doc */
@@ -968,6 +973,7 @@ Foxtrick.modules.MatchLineupTweaks = {
 		if (inProgress || isLive)
 			return;
 
+		/** @type {MatchSide} */
 		var team = 'away';
 		var ownId = Foxtrick.util.id.getOwnTeamId();
 
@@ -991,6 +997,8 @@ Foxtrick.modules.MatchLineupTweaks = {
 
 		var matchDate = Foxtrick.Pages.Match.getDate(doc);
 		matchDate = Foxtrick.util.time.toHT(doc, matchDate);
+		if (!matchDate)
+			return;
 
 		let players = module.getPlayersWithStamina(doc, team);
 		Foxtrick.forEach(function(player) {
@@ -1018,7 +1026,7 @@ Foxtrick.modules.MatchLineupTweaks = {
 
 	/**
 	 * @param  {document}                  doc
-	 * @param  {'home'|'away'}             team
+	 * @param  {MatchSide}                 team
 	 * @return {MatchReportRatingPlayer[]}
 	 */
 	getPlayersWithStamina: function(doc, team) {
@@ -1120,6 +1128,9 @@ Foxtrick.modules.MatchLineupTweaks = {
 		}
 
 		var table = Foxtrick.Pages.Match.getRatingsTable(doc);
+		if (!table)
+			return EMPTY;
+
 		var teamNr = Number(!isHome);
 
 		// don't parse pressing: affects stamina
@@ -1184,6 +1195,9 @@ Foxtrick.modules.MatchLineupTweaks = {
 
 			p.checkpoints = getCheckpointCount(p.FromMin, p.ToMin);
 			p.lastEvent = findEvent(p.ToMin); // TODO test OT and extension
+			if (!p.lastEvent)
+				return p;
+
 			p.lastEnergy = playerRatings[p.lastEvent].players[p.ftIdx].Stamina;
 
 			// player.isRested = hasRest(player.FromMin, player.ToMin);
@@ -1368,4 +1382,5 @@ Foxtrick.modules.MatchLineupTweaks = {
 
 /**
  * @typedef {HTMatchReportRatingPlayer & FTMatchReportRatingPlayer} MatchReportRatingPlayer
+ * @typedef {'home'|'away'} MatchSide
  */
